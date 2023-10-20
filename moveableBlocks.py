@@ -1,5 +1,6 @@
 import pygame
 
+
 class MovableRectangle:
     def __init__(self, x, y, width, height, color):
         self.rect = pygame.Rect(x, y, width, height)
@@ -30,6 +31,18 @@ class MovableRectangle:
             self.rect.x = mouse_x - self.offset_x
             self.rect.y = mouse_y - self.offset_y
 
+    # Function to check for collisions between rectangles
+    def check_collisions(rectangles):
+        for r1 in rectangles:
+            for r2 in rectangles:
+                if r1 != r2 and r1.rect.colliderect(r2.rect):
+                    # Perform collision response here
+                    # For example, change the color of collided rectangles
+                    r1.color = (0, 255, 0)
+                    r2.color = (0, 255, 0)
+
+
+
 class Button:
     def __init__(self, x, y, width, height, color, text, callback):
         self.rect = pygame.Rect(x, y, width, height)
@@ -49,6 +62,7 @@ class Button:
             if event.button == 1 and self.rect.collidepoint(event.pos):
                 self.callback()
 
+
 # Pygame initialization
 pygame.init()
 
@@ -65,10 +79,12 @@ BLUE = (0, 0, 255)
 # Create a list of movable rectangles
 rectangles = []
 
+
 # Function to add a new movable rectangle
 def add_rectangle():
     new_rectangle = MovableRectangle(100, 100, 100, 50, RED)
     rectangles.append(new_rectangle)
+
 
 # Create a button to add new rectangles
 add_button = Button(50, 50, 200, 50, BLUE, "Add Rectangle", add_rectangle)
@@ -76,7 +92,7 @@ add_button = Button(50, 50, 200, 50, BLUE, "Add Rectangle", add_rectangle)
 running = True
 while running:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT:  # Close window
             running = False
 
         for rectangle in rectangles:
@@ -91,6 +107,8 @@ while running:
         rectangle.draw(window)
 
     add_button.draw(window)
+
+    check_collisions() # Check for collisions between rectangles
 
     pygame.display.flip()
 

@@ -1,10 +1,22 @@
 import pygame
 
+
 class Button:
     def __init__(self, x, y, width, height, text, action,
                  font=pygame.font.Font(None, 36),
                  btn_clr=(0, 128, 255),
                  txt_clr = (255, 255, 255)):
+        """
+        :param x:
+        :param y:
+        :param width:
+        :param height:
+        :param text:
+        :param action:
+        :param font:
+        :param btn_clr:
+        :param txt_clr:
+        """
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
         self.action = action
