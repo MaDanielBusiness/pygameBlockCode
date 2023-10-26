@@ -37,4 +37,4 @@ def xor_lambda(boolean1, boolean2):
     return boolean1 ^ boolean2
 
 # Example usage:
-if_lambda(True, lambda: print("hi"))
+#if_lambda(True, lambda: print("hi"))
