@@ -1,38 +1,38 @@
 import lambdaFunctions
 from lambdaFunctions import *
 
+
 class node:
-    def __init__(self, value = None):
-        self.left = None
-        self.right = None
+    def __init__(self, value=None):
         self.parent = None
+        self.inner = None
+        self.child = None
         self.value = value
 
     def __str__(self):
         return self.value
 
-    def get_left(self):
-        return self.left
+    def act(self):
+        if callable(self.value):
+            self.value()
+        if self.child is not None:
+            self.child.act()
 
-    def set_left(self, left):
-        self.left = left
-
-    def get_right(self):
-        return self.right
-
-    def set_right(self, right):
-        self.right = right
-
-    def get_parent(self):
-        return self.parent
-
-    def set_parent(self, parent):
-        self.parent = parent
+    def act2(self):
+        temp = 0
+        if callable(self.value):
+            pass
+            # check if it has parameters
 
 
-if __name__ == "test":
-    boolb = node(True) # the value is the boolean
-    hi = node(lambda : print("hi")) # the value is the function
-    ifb = node((boolb, hi)) # the value is the parameters
-    block = node(if_lambda(ifb.value)) # pass the function the parameters
-    #block.value
+
+i = node(lambda: print("i"))
+j = node(lambda: print("j"))
+k = node(lambda x: print(x))
+
+i.act()
+j.act()
+
+i.child = j
+
+i.act()
