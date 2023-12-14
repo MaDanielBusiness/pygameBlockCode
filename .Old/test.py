@@ -1,7 +1,3 @@
-import lambdaFunctions
-from lambdaFunctions import *
-
-
 class node:
     def __init__(self, value=None):
         self.parent = None
